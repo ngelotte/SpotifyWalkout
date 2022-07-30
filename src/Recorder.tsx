@@ -30,7 +30,7 @@ export const AudioRecorder = (): JSX.Element => {
             type: blob.type,
             lastModified: Date.now(),
           });
-          setBlobUrl(URL.createObjectURL(file));
+          set('savedFile', file);
           // const player = new Audio(URL.createObjectURL(file));
           // player.play();
         })

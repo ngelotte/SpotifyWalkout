@@ -39,9 +39,10 @@ export const AuthLogin = () => {
 
 export const Callback = () => {
   {
-    const [searchParams, setSearchParams] = useSearchParams();
-    let accessToken = searchParams.get("access_token");
+    
+    let accessToken = window.location.href.split('#')[1].split('=')[1].split('&')[0];
     console.log(accessToken);
+    
     localStorage.setItem(accessTokenKey, accessToken ?? "");
     return <Navigate to="/" />;
   }

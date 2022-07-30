@@ -7,7 +7,7 @@ import { accessTokenKey } from "./Auth";
 function App() {
   const [token, setToken] = useState("");
   let tempToken = localStorage.getItem(accessTokenKey);
-  if (tempToken) {
+  if (tempToken && !token) {
     setToken(tempToken);
   }
   return <>{token === "" ? <Login /> : <WebPlayback token={token} />}</>;
