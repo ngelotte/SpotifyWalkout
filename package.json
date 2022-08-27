@@ -5,7 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/style": "^0.8.0",
+    "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.8.6",
+    "@mui/styles": "^5.10.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -17,6 +19,7 @@
     "idb-keyval": "^6.2.0",
     "mic-recorder-to-mp3": "^2.2.2",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
@@ -50,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/spotify-web-api-node": "^5.0.7"
   }
 }

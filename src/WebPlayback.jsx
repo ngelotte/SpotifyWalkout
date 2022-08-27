@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-node";
 import { Link } from "react-router-dom";
+import { useTimeout } from "./HelperHooks";
 
 const track = {
   name: "",
@@ -18,6 +19,7 @@ function WebPlayback(props) {
   const [deviceId, setDeviceId] = useState(null);
   const [deviceTransferAttempted, setDeviceTransferAttempted] = useState(false);
   const [spotify, setSpotify] = useState(null);
+  const [currentTrackPlayback, setCurrentTrackPlayback] = useState(null);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -63,13 +65,15 @@ function WebPlayback(props) {
         !state ? setActive(false) : setActive(true);
       });
       const spotifyApi = new SpotifyWebApi();
-      spotifyApi.setAccessToken(
-        props.token
-      );
+      spotifyApi.setAccessToken(props.token);
       setSpotify(spotifyApi);
     };
   }, []);
-
+  useTimeout(() => {
+    if (!is_paused) {
+      player.togglePlay();
+    }
+  }, currentTrackPlayback);
   if (spotify && deviceId && deviceTransferAttempted == false) {
     setDeviceTransferAttempted(true);
     spotify.transferMyPlayback([deviceId]).then(
@@ -149,20 +153,13 @@ function WebPlayback(props) {
               if (is_paused) {
                 player.togglePlay();
               }
+              setCurrentTrackPlayback(5000);
             }}
           >
-            Move
+            WALKOUT
           </button>
-          <button
-            onClick={() => {
-              player.seek(74 * 1000);
-              if (is_paused) {
-                player.togglePlay();
-              }
-            }}
-          >
-            Move
-          </button>
+        </div>
+        <div>
           <Link to="Recording">Record Name</Link>
         </div>
       </>
